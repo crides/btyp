@@ -1,0 +1,135 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+
+/ {
+    behaviors {
+        // My Modtap
+        mm: behavior_mod_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MOD_TAP";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <150>;
+            bindings = <&kp>, <&kp>;
+        };
+        // My Layertap
+        ml: behavior_layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LAYER_TAP";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <150>;
+            bindings = <&mo>, <&kp>;
+        };
+        qm: behavior_quick_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "quick_tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <150>;
+            quick-tap-ms = <200>;
+            bindings = <&kp>, <&kp>;
+        };
+    };
+    combos {
+        compatible = "zmk,combos";
+#define CONCAT2(x, y) x ## y
+#define CONCAT(x, y) CONCAT2(x, y)
+#define COMBO(pos, k) CONCAT(combo, __COUNTER__) { key-positions = <pos>; bindings = <&kp k>; layers = <0 1 2 3 4>; timeout-ms = <60>; };
+        COMBO(0 1, PERCENT)
+        COMBO(1 2, BSLH)
+        COMBO(2 3, LBKT)
+        COMBO(6 7, RBKT)
+        COMBO(7 8, EQUAL)
+        COMBO(8 9, PLUS)
+
+        COMBO(10 11, CARET)
+        COMBO(11 12, DOLLAR)
+        COMBO(12 13, LPAR)
+        COMBO(16 17, RPAR)
+        COMBO(17 18, SEMI)
+        COMBO(18 19, COLON)
+
+        COMBO(20 21, EXCL)
+        COMBO(21 22, AT)
+        COMBO(22 23, LBRC)
+        COMBO(26 27, RBRC)
+        COMBO(27 28, FSLH)
+        COMBO(28 29, QMARK)
+
+        COMBO(1 11, GRAVE)
+        COMBO(2 12, AMPS)
+        COMBO(3 13, STAR)
+        COMBO(6 16, UNDER)
+        COMBO(7 17, DQT)
+        COMBO(8 18, SQT)
+
+        COMBO(11 21, TILDE)
+        COMBO(12 22, PIPE)
+        COMBO(13 23, HASH)
+        COMBO(16 26, MINUS)
+        COMBO(17 27, LT)
+        COMBO(18 28, GT)
+    };
+#define BASE  0
+#define LOWER 1
+#define RAISE 2
+#define ADJUST 3
+
+    macros {
+        #include "macros.dtsi"
+    };
+
+    adjust {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <LOWER RAISE>;
+            then-layer = <ADJUST>;
+        };
+    };
+
+    keymap0: keymap {
+        compatible = "zmk,keymap";
+        base {
+            bindings = <
+&kp Q        &kp W       &kp E        &kp R         &kp T         &kp Y         &kp U         &kp I        &kp O         &kp P
+&kp A        &kp S       &kp D        &kp F         &kp G         &kp H         &kp N         &kp K        &kp L         &kp B
+&kp Z        &kp X       &kp C        &kp V         &none         &none         &kp M         &kp COMMA    &kp DOT       &kp J
+                         &qm LGUI DEL &mm LCTRL TAB &ml RAISE ESC &ml LOWER RET &qm LSHFT SPC &qm LALT BSPC
+            >;
+        };
+        lower {
+            bindings = <
+&kp LG(N1)   &kp LG(N2)  &kp LG(N3)   &kp LG(N4)    &kp LG(N5)    &kp LG(N6)    &kp LG(N7)    &kp LG(N8)   &kp F11       &kp F12
+&kp N1       &kp N2      &kp N3       &kp N4        &kp N5        &kp N6        &kp N7        &kp N8       &kp N9        &kp N0
+&kp F1       &kp F2      &kp F3       &kp F4        &kp F5        &kp F6        &kp F7        &kp F8       &kp F9        &kp F10
+                         &trans       &trans        &trans        &trans        &trans        &trans
+            >;
+        };
+
+        raise {
+            bindings = <
+&kp C_BRI_DN &kp C_MUTE  &kp C_VOL_DN &kp C_VOL_UP  &kp C_BRI_UP  &kp HOME      &kp PG_DN     &kp PG_UP    &kp END       &kp PRSC
+&out OUT_BLE &tog STENO  &bt BT_SEL 0 &bt BT_SEL 1  &bt BT_SEL 2  &kp LEFT      &kp DOWN      &kp UP       &kp RIGHT     &none
+&out OUT_USB &kp K_PREV  &kp K_PP     &kp K_NEXT    &bt BT_CLR    &kp LC(LEFT)  &kp LC(DOWN)  &kp LC(UP)   &kp LC(RIGHT) &none
+                         &trans       &trans        &trans        &trans        &trans        &trans
+            >;
+        };
+
+        adjust {
+            bindings = <
+&none &none &school_email &none       &none &none &uiuc &none &personal_email &phone
+&none &steve &none         &first_name &none &none &name &none &last_name      &none
+&none &none &none         &none       &none &none &none &none &none           &none
+                         &trans       &trans        &trans        &trans        &trans        &trans
+            >;
+        };
+};
