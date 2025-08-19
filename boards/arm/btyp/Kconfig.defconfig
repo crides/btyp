@@ -31,36 +31,4 @@ config ZMK_USB
 config ZMK_BATTERY_VOLTAGE_DIVIDER
     default y
 
-if ZMK_DISPLAY
-
-config LS0XX
-    default y
-
-endif # ZMK_DISPLAY
-
-if LVGL
-
-config LVGL_HOR_RES_MAX
-    default 144
-
-config LVGL_VER_RES_MAX
-    default 168
-
-config LVGL_VDB_SIZE
-    default 50
-
-config LVGL_DPI
-    default 148
-
-config LVGL_BITS_PER_PIXEL
-    default 1
-
-choice LVGL_COLOR_DEPTH
-    default LVGL_COLOR_DEPTH_1
-endchoice
-
-endif
-
-source "../app/steno/Kconfig"
-
 endif # BOARD_BTYP
