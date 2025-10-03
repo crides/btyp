@@ -31,7 +31,7 @@
                 12 13 14 15
                 20 21 22 23>;
             hold-trigger-on-release;
-            retro-tap;
+            /* retro-tap; */
         };
         rm: right_mod_tap {
             compatible = "zmk,behavior-hold-tap";
@@ -45,7 +45,7 @@
                 8 9 10 11
                 16 17 18 19>;
             hold-trigger-on-release;
-            retro-tap;
+            /* retro-tap; */
         };
     };
     combos {
@@ -93,21 +93,27 @@
 &lm LALT H  &lm LGUI G &lm LSHFT E &lm LCTRL T &rm LCTRL U &rm LSHFT I &rm LGUI O &rm LALT P
 &ml LEFT_ A &kp S      &kp D       &kp F       &kp N       &kp K       &kp L      &ml RIGHT_ B
 &kp Y       &kp W      &kp C       &kp R       &kp M       &kp COMMA   &kp DOT    &kp J
+
+/* &lm LALT B  &lm LGUI F &lm LSHFT D &lm LCTRL M &rm LCTRL L &rm LSHFT O &rm LGUI U &rm LALT Y */
+/* &ml LEFT_ N &kp S      &kp T       &kp G       &kp R       &kp A       &kp E      &ml RIGHT_ I */
+/* &kp P       &kp C      &kp K       &kp W       &kp H       &kp COMMA   &kp DOT    &kp J */
             >;
         };
         left {
             bindings = <
-            &none &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &kp N1 &kp N2 &kp N3 &none
-            &none &trans       &trans       &trans       &kp N4 &kp N5 &kp N6 &kp N0
-            &none &out OUT_USB &out OUT_BLE &bt BT_CLR   &kp N7 &kp N8 &kp N9 &none
+            &none &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &kp N1 &kp N2 &kp N3 &kp N4
+            &none &trans       &trans       &trans       &kp N5 &kp N6 &kp N7 &kp N8
+            &none &out OUT_USB &out OUT_BLE &bt BT_CLR   &kp N9 &trans &trans &kp N0
             >;
         };
 
+
+            
         right {
             bindings = <
-            &trans &trans &trans &trans &kp HOME &kp UP   &kp END   &none
-            &trans &trans &trans &trans &kp LEFT &kp DOWN &kp RIGHT &none
-            &trans &trans &trans &trans &kp PGUP &none    &kp PGDN  &none
+             &trans       &trans     &trans       &trans       &kp HOME &kp UP   &kp END   &none
+             &kp C_BRI_UP &kp C_MUTE &kp C_VOL_DN &kp C_VOL_UP &kp LEFT &kp DOWN &kp RIGHT &none
+             &kp C_BRI_DN &kp K_PREV &kp K_PP     &kp K_NEXT   &kp PGUP &none    &kp PGDN  &none
             >;
         };
 
