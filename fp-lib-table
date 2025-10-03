@@ -1,0 +1,8 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "pg1316")(type "KiCad")(uri "${KIPRJMOD}/pg1316")(options "")(descr ""))
+  (lib (name "mcu")(type "KiCad")(uri "${KIPRJMOD}/kleeb/mcu.pretty")(options "")(descr ""))
+  (lib (name "soldered-nuts")(type "KiCad")(uri "${KIPRJMOD}/kleeb/soldered-nuts.pretty")(options "")(descr ""))
+  (lib (name "btyp")(type "KiCad")(uri "${KIPRJMOD}/btyp.pretty")(options "")(descr ""))
+  (lib (name "misc")(type "KiCad")(uri "${KIPRJMOD}/kleeb/misc.pretty")(options "")(descr ""))
+)

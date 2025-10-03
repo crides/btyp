@@ -1,0 +1,6 @@
+[submodule "kleeb"]
+	path = kleeb
+	url = https://github.com/crides/kleeb
+[submodule "marbastlib"]
+	path = marbastlib
+	url = https://github.com/ebastler/marbastlib
